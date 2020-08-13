@@ -17,7 +17,6 @@ jdk:
 # - docker pull arangodb/arangodb
 # create docker container
 # - docker run -d -p 8539:8529 -e ARANGO_ROOT_PASSWORD=ocrd-testOnly arangodb/arangodb
-- chmod +x ./gradlew
 
 install: true
   
