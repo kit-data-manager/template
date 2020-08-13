@@ -1,8 +1,10 @@
 # KIT Data Manager - Project Template
 
 ![Build Status](https://img.shields.io/travis/kit-data-manager/template.svg)
-![Code Coverage](https://img.shields.io/coveralls/github/kit-data-manager/template.svg) (New repositories need to be activated at coveralls.io)
+![Code Coverage](https://img.shields.io/coveralls/github/kit-data-manager/template.svg)
 ![License](https://img.shields.io/github/license/kit-data-manager/template.svg)
+
+!New repositories need to be activated at coveralls.io!
 
 ## How to build
 
