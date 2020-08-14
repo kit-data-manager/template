@@ -1,4 +1,4 @@
-# KIT Data Manager - Project Template
+# KIT Data Manager - {Name}
 
 ![Build Status](https://img.shields.io/travis/kit-data-manager/template.svg)
 ![Code Coverage](https://img.shields.io/coveralls/github/kit-data-manager/template.svg)
