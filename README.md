@@ -1,4 +1,4 @@
-# Required steps after creating a repository from this template
+## :information_source: Required steps after creating a repository from this template :information_source:
 
 * Replace all occurences of **template** in this file with your project name
 * Enable this project in coveralls in order to obtain code coverage reports
