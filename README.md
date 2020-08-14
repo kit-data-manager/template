@@ -4,8 +4,6 @@
 ![Code Coverage](https://img.shields.io/coveralls/github/kit-data-manager/template.svg)
 ![License](https://img.shields.io/github/license/kit-data-manager/template.svg)
 
-!New repositories need to be activated at coveralls.io!
-
 ## How to build
 
 In order to build this microservice you'll need:
