@@ -1,4 +1,14 @@
-# KIT Data Manager - {Name}
+# Required steps after creating a repository from this template
+
+* Replace all occurences of **template** in this file with your project name
+* Enable this project in coveralls in order to obtain code coverage reports
+* Add branch protection rules in project settings -> branches to require status checks, e.g. Travis Pull and Coveralls, and branches to be up to date for master branch
+* Fill in or remove sections of this README.md marked with TODO
+* Remove this section from README.md
+
+---
+
+# KIT Data Manager - template
 
 ![Build Status](https://img.shields.io/travis/kit-data-manager/template.svg)
 ![Code Coverage](https://img.shields.io/coveralls/github/kit-data-manager/template.svg)
@@ -8,7 +18,7 @@
 
 In order to build this microservice you'll need:
 
-* Java SE Development Kit 8 or higher
+* OpenJDK 11 or higher
 
 After obtaining the sources change to the folder where the sources are located perform the following steps:
 
