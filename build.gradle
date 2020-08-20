@@ -57,8 +57,9 @@ if (project.hasProperty('travis')) {
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-rest")
  
-    implementation("edu.kit.datamanager:service-base:0.1.1"){
-    implementation("edu.kit.datamanager:generic-message-consumer:0.1")
+    implementation("edu.kit.datamanager:service-base:0.1.1")
+    //Enable dependency if messaging is needed, otherwise reduce size by skipping it
+    //implementation("edu.kit.datamanager:generic-message-consumer:0.1")
 
     //Java 11 Support 
     implementation 'javax.xml.bind:jaxb-api:2.3.1'
