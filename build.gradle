@@ -58,9 +58,6 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-rest")
  
     implementation("edu.kit.datamanager:service-base:0.1.1"){
-        //remove exclusion if versioning support using JaVers is needed
-        exclude group: 'org.javers', module: 'javers-spring-boot-starter-sql'
-    }
     implementation("edu.kit.datamanager:generic-message-consumer:0.1")
 
     //Java 11 Support 
