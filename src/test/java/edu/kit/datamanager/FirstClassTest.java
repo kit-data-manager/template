@@ -10,7 +10,7 @@ import org.junit.Test;
 
 /**
  *
- * @author Torridity
+ * @author 
  */
 public class FirstClassTest {
 
