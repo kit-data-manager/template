@@ -7,7 +7,7 @@ package edu.kit.datamanager;
 
 /**
  *
- * @author Torridity
+ * @author 
  */
 public class FirstClass {
 
