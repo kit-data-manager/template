@@ -21,8 +21,10 @@
         - Replace all occurences of **template** in this file with your project name 'NEW-PROJECT'
     - Fill in or remove sections of this README.md marked with TODO
     - Remove this section from README.md
-    - Push changes to GitHub
+    - Commit changes
         - `git add .`
+        - `git commit -m "Adapt template for 'NEW-PROJECT'."`
+    - Push changes to GitHub
         - `git push -u origin firstSettings`
     - Create pull request on GitHub for branch 'firstSettings'
     - Pull request triggers CI and CodeCoverage. If successful it can be merged to master.
