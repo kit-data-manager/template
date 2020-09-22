@@ -88,9 +88,9 @@
 **Workflow:**
 
 - Pull request triggers CI and CodeCoverage. If successful it can be merged to master.
-    - If not commit requested changes until tests are successful.
-- Durchführen des Pull Requests in GitHub
-- [Synchronisieren der Repositorien](#Ziel-Master-synchronisieren)
+    - If not, commit requested changes until tests are successful.
+- Merge pull request in GitHub
+- [Sync fork with upstream repo](#Sync-fork-with-upstream-repo)
 
 ---
 
