@@ -13,8 +13,8 @@
     - `git clone https://github.com/YOUR-USERNAME/NEW-PROJECT.git`
 
 - Configure Git to sync your fork with the original NEW-PROJECT repository 
-    - `git remote add upstream https://github.com/kit-data-manager/NEW-PROJECT.git`
-    - `cd NEW-PROJECT`
+     - `cd NEW-PROJECT`
+     - `git remote add upstream https://github.com/kit-data-manager/NEW-PROJECT.git`
 - Adapt project to your needs
     - Create branch
         - `git checkout -b firstSettings`
