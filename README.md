@@ -27,71 +27,13 @@
     - Create pull request on GitHub for branch 'firstSettings'
     - Pull request triggers CI and CodeCoverage. If successful it can be merged to master.
     - Merge pull request in GitHub
-    - [Sync fork with upstream repo](#Sync-fork-with-upstream-repo)
+    - [Sync fork with upstream repo](https://github.com/kit-data-manager/template/wiki/Manual#Sync-fork-with-upstream-repo)
     - Optional: remove branch to keep your repo clean
         - `git branch -d firstSettings`
-    
----
-### Sync fork with upstream repo
-**Precondition:** 
 
-- branches of 'upstream/master' and 'master' are ***NOT*** in sync
-- branch 'upstream/master' is the most recent version.
-
-**Workflow:**
-- Get actual version of the original repository
-    - `git fetch upstream`
-- Merge changes to your local copy
-    - `git checkout master`
-    - `git merge upstream/master`
-- Push actual version to your fork on GitHub
-    - `git push origin master` 
-
-
----
-### Fix bug #1
-
-
-**Precondition:** 
-
-- branches of 'upstream/master' and 'master' are in sync
-- There is an open issue (#1)
-
-**Workflow:**
-
-- Create local branch 'bugfix_1' 
-    - `git checkout -b bugfix_1`
-- Fix bug
-- Log changes in CHANGELOG.md
-- Commit changes
-    - `git add . `
-    - `git commit -m 'YOUR COMMIT MESSAGE, fixes #1; '`
-    -  for several fixes use this command: `git commit -m "YOUR COMMIT MESSAGE, fixes #1, fixes #2, fixes #3"`
-- Push changes to GitHub
-    - `git push -u origin bugfix_1`
-- Create pull request on GitHub for branch 'bugfix_1'
-- Pull request triggers CI and CodeCoverage. If successful it can be merged to master.
-- Merge pull request in GitHub
-    - Issue #1 will be closed
-- [Sync fork with upstream repo](#Sync-fork-with-upstream-repo)
-- Optional: remove branch to keep your repo clean
-    - `git branch -d bugfix_1`
-
-
----
-### Merge external pull request
-
-**Precondition:** 
-
-- There is an open pull request on GitHub
-
-**Workflow:**
-
-- Pull request triggers CI and CodeCoverage. If successful it can be merged to master.
-    - If not, commit requested changes until tests are successful.
-- Merge pull request in GitHub
-- [Sync fork with upstream repo](#Sync-fork-with-upstream-repo)
-
+Further information will be available
+[here](https://github.com/kit-data-manager/template/wiki/Manual).
+   
 ---
 
 # KIT Data Manager - template
