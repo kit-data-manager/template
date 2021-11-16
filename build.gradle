@@ -50,23 +50,32 @@ if (System.getProperty("profile") == "minimal") {
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-data-rest")
- 
-    implementation("edu.kit.datamanager:service-base:0.1.2")
-    //Enable dependency if messaging is needed, otherwise reduce size by skipping it
-    //implementation("edu.kit.datamanager:generic-message-consumer:0.1")
+    // Spring framework dependencies can be listed without versions,
+    // as the spring boot gradle plugin will choose the version.
+    // To update all spring dependencies, simply update the plugins instead.
 
-    //Java 11 Support 
+    // Base dependency, bundling reusable components for our services.
+    implementation("edu.kit.datamanager:service-base:0.3.0")
+    // Base dependency for repositories, ontaining reusable components.
+    implementation("edu.kit.datamanager:repo-core:0.9.1")
+    // Messaging support (AMQP, e.g. RabbitMQ)
+    //implementation("edu.kit.datamanager:generic-message-consumer:0.2")
+
+    // Building REST for repositories
+    implementation("org.springframework.boot:spring-boot-starter-data-rest")
+    // Jakarta XML Binding / Java Architecture for XML Binding
     implementation 'javax.xml.bind:jaxb-api:2.3.1'
-    implementation 'com.sun.xml.bind:jaxb-core:2.3.0.1'
-    implementation 'com.sun.xml.bind:jaxb-impl:2.3.0.1'
+    implementation 'com.sun.xml.bind:jaxb-core:3.0.2'
+    implementation 'com.sun.xml.bind:jaxb-impl:3.0.2'
+    // Encapsulation of data
     implementation('javax.activation:activation:1.1.1')
-    implementation('org.javassist:javassist:3.23.1-GA')
+    // byte code manipulation
+    implementation('org.javassist:javassist:3.28.0-GA')
     
-    //Java 11 Support 
-    testImplementation("org.mockito:mockito-core:2.18.0")
-    testImplementation("org.powermock:powermock-module-junit4:2.0.0-beta.5")
-    testImplementation("org.powermock:powermock-api-mockito2:2.0.0-beta.5")
+    // Mockup libraries for testing
+    testImplementation("org.mockito:mockito-core:4.0.0")
+    testImplementation("org.powermock:powermock-module-junit4:2.0.9")
+    testImplementation("org.powermock:powermock-api-mockito2:2.0.9")
 
     // Asciidoctor + spring-restdocs, see at the end of this file.
     testImplementation('org.springframework.restdocs:spring-restdocs-mockmvc')
