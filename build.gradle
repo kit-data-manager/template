@@ -112,6 +112,8 @@ asciidoctor {
 }
 
 test {
+    // Maka jacoco report the test coverage afterwards
+    finalizedBy jacocoTestReport
     // Spring RESTdocs extension for Asciidoctor config
     outputs.dir snippetsDir
     // Search for application.properties file in /config
@@ -136,4 +138,30 @@ tasks.withType(Test) {
         // The events to be logged.
         // events 'started', 'passed'
     }
+}
+
+/* Jacoco Gradle Plugin Docs: https://docs.gradle.org/current/userguide/jacoco_plugin.html */
+jacoco {
+    // check here for new versions: https://www.jacoco.org/jacoco/
+    toolVersion = "0.8.7"
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required = true
+        html.required = true
+    }
+    /* In case you need to exclude something:
+    afterEvaluate {
+        //exclude some classes/package from code coverage report
+        classDirectories.setFrom(files(classDirectories.files.collect {
+                    fileTree(dir: it, exclude: [\
+            'edu/kit/datamanager/collection/configuration/**', \
+            'edu/kit/datamanager/collection/filters/**', \
+            'edu/kit/datamanager/collection/Application*'
+                        ])
+                }))
+    }
+    */
 }
