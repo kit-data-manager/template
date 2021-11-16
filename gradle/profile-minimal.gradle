@@ -1,0 +1,5 @@
+/*
+ * Configure this profile to exclude lengthy tasks for your project.
+ */
+
+println "Minimal profile has not been customized."

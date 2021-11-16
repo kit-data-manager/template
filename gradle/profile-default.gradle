@@ -1,0 +1,82 @@
+/*
+ * TESTING AND DOCUMENTATION
+ * Configuration to run all tests and create the documentation below.
+ * There are spring extensions for asciidoctor used to enrich the documentation.
+ *
+ * References:
+ * - Asciidoctor: https://asciidoctor.github.io/asciidoctor-gradle-plugin/development-3.x/user-guide/#_as_external_library
+ * - Spring RESTdocs https://spring.io/projects/spring-restdocs#learn -> Reference Doc -> Build Configuration
+ */
+
+ext {
+    // Spring RESTdocs extension for Asciidoctor config
+	snippetsDir = file('build/generated-snippets')
+}
+
+import java.text.SimpleDateFormat
+asciidoctor {
+    configurations 'asciidoctorExt'
+    sourceDir "docs/"
+    outputDir "build/docs"
+    attributes "snippets": snippetsDir,
+               "version": jar.archiveVersion,
+               "date": new SimpleDateFormat("yyyy-MM-dd").format(new Date())
+    // Spring RESTdocs extension for Asciidoctor config
+    inputs.dir snippetsDir
+	dependsOn test
+}
+
+test {
+    // Maka jacoco report the test coverage afterwards
+    finalizedBy jacocoTestReport
+    // Spring RESTdocs extension for Asciidoctor config
+    outputs.dir snippetsDir
+    // Search for application.properties file in /config
+    environment "spring.config.location", "classpath:/config/"
+
+    testLogging {
+        // always run tasks, they are never outdated
+        outputs.upToDateWhen {false}
+        // show stdio of tests
+        showStandardStreams = true
+    }
+    // run really all tests
+    include '**/*'
+}
+
+tasks.withType(Test) {
+    testLogging {
+        // always run tasks, they are never outdated
+        outputs.upToDateWhen {false}
+        // show stdio and stderr of tests
+        showStandardStreams = true
+        // The events to be logged.
+        // events 'started', 'passed'
+    }
+}
+
+/* Jacoco Gradle Plugin Docs: https://docs.gradle.org/current/userguide/jacoco_plugin.html */
+jacoco {
+    // check here for new versions: https://www.jacoco.org/jacoco/
+    toolVersion = "0.8.7"
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required = true
+        html.required = true
+    }
+    /* In case you need to exclude something:
+    afterEvaluate {
+        //exclude some classes/package from code coverage report
+        classDirectories.setFrom(files(classDirectories.files.collect {
+                    fileTree(dir: it, exclude: [\
+            'edu/kit/datamanager/collection/configuration/**', \
+            'edu/kit/datamanager/collection/filters/**', \
+            'edu/kit/datamanager/collection/Application*'
+                        ])
+                }))
+    }
+    */
+}
