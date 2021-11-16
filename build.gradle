@@ -4,8 +4,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.2.2.RELEASE")
-        classpath 'org.asciidoctor:asciidoctor-gradle-plugin:1.5.9.2'
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:2.2.2.RELEASE"
     }
 }
 
@@ -16,7 +15,7 @@ plugins {
     id "io.spring.dependency-management" version "1.0.11.RELEASE" 
     id "com.github.kt3k.coveralls" version "2.8.1" 
     id "org.owasp.dependencycheck" version "3.1.2"
-    id "org.asciidoctor.convert" version "1.5.3"
+    id 'org.asciidoctor.jvm.convert' version '3.3.2'
 }
 
 apply plugin: 'java'
@@ -39,6 +38,8 @@ targetCompatibility = 1.8
  
 configurations {
     all*.exclude module : 'spring-boot-starter-logging'
+    // See testing & documentation at the end of this file
+    asciidoctorExt
 }
 
 lombok {
@@ -73,10 +74,10 @@ dependencies {
     testImplementation("org.powermock:powermock-module-junit4:2.0.0-beta.5")
     testImplementation("org.powermock:powermock-api-mockito2:2.0.0-beta.5")
 
-    testImplementation('org.springframework.restdocs:spring-restdocs-mockmvc:2.0.4.RELEASE')
-    testImplementation('org.asciidoctor:asciidoctor-gradle-plugin:1.5.9.2')
-    asciidoctor('org.springframework.restdocs:spring-restdocs-asciidoctor:2.0.4.RELEASE')
-    asciidoctor('com.github.allati.asciidoctor.monotree:asciidoctor-extension-monotree:0.0.1')
+    // Asciidoctor + spring-restdocs, see at the end of this file.
+    testImplementation('org.springframework.restdocs:spring-restdocs-mockmvc:2.0.5.RELEASE')
+    asciidoctorExt('org.springframework.restdocs:spring-restdocs-asciidoctor:2.0.4.RELEASE')
+    asciidoctorExt('com.github.allati.asciidoctor.monotree:asciidoctor-extension-monotree:0.0.1')
 }
 
 bootJar {
@@ -90,10 +91,57 @@ bootJar {
     launchScript()
 }
 
-test {
-    testLogging {
-        outputs.upToDateWhen {false}
-        showStandardStreams = true
-    }
+/*
+ * TESTING AND DOCUMENTATION
+ * Configuration to run all tests and create the documentation below.
+ * There are spring extensions for asciidoctor used to enrich the documentation.
+ *
+ * References:
+ * - Asciidoctor: https://asciidoctor.github.io/asciidoctor-gradle-plugin/development-3.x/user-guide/#_as_external_library
+ * - Spring RESTdocs https://spring.io/projects/spring-restdocs#learn -> Reference Doc -> Build Configuration
+ */
+
+ext {
+    // Spring RESTdocs extension for Asciidoctor config
+	snippetsDir = file('build/generated-snippets')
 }
 
+import java.text.SimpleDateFormat
+asciidoctor {
+    configurations 'asciidoctorExt'
+    sourceDir "docs/"
+    outputDir "build/docs"
+    attributes "snippets": snippetsDir,
+               "version": jar.archiveVersion,
+               "date": new SimpleDateFormat("yyyy-MM-dd").format(new Date())
+    // Spring RESTdocs extension for Asciidoctor config
+    inputs.dir snippetsDir
+	dependsOn test
+}
+
+test {
+    // Spring RESTdocs extension for Asciidoctor config
+    outputs.dir snippetsDir
+    // Search for application.properties file in /config
+    environment "spring.config.location", "classpath:/config/"
+
+    testLogging {
+        // always run tasks, they are never outdated
+        outputs.upToDateWhen {false}
+        // show stdio of tests
+        showStandardStreams = true
+    }
+    // run really all tests
+    include '**/*'
+}
+
+tasks.withType(Test) {
+    testLogging {
+        // always run tasks, they are never outdated
+        outputs.upToDateWhen {false}
+        // show stdio and stderr of tests
+        showStandardStreams = true
+        // The events to be logged.
+        // events 'started', 'passed'
+    }
+}
