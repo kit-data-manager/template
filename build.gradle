@@ -9,9 +9,9 @@ plugins {
     id 'java'
     id 'java-library'
     // testing, documentation, ...
-    id 'jacoco'
-    id "org.owasp.dependencycheck" version "6.5.0.1"
-    id 'org.asciidoctor.jvm.convert' version '3.3.2'
+    id 'jacoco'  // Test coverage report (base for e.g. codecov)
+    id "org.owasp.dependencycheck" version "6.5.0.1"  // find known vulnerabilities (CVEs) in dependencies
+    id 'org.asciidoctor.jvm.convert' version '3.3.2'  // Documentation
 }
 
 jar {
