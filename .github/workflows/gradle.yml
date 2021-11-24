@@ -11,6 +11,10 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+env:
+    # JDK version used for test coverage build
+    coverageJDKVersion: 8
+
 jobs:
   build:
     runs-on: ${{ matrix.operating-system }}
@@ -52,10 +56,10 @@ jobs:
       uses: actions/setup-java@v2
       with:
         distribution: 'zulu' 
-        java-version: ${{ env.currentBuildVersion }}
+        java-version: ${{ env.coverageJDKVersion }}
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
-    - name: Build with Gradle (JDK ${{ env.currentBuildVersion }})
+    - name: Build with Gradle (JDK ${{ env.coverageJDKVersion }})
       run: ./gradlew clean check jacocoTestReport
     - name: Codecov
       uses: codecov/codecov-action@v1
