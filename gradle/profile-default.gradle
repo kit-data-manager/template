@@ -1,7 +1,12 @@
 /*
+ * This profile will make an extensive build of code and documentation and will run all available tests.
+ * This is what you want to use for CI etc.
+ */
+
+/*
  * TESTING AND DOCUMENTATION
  * Configuration to run all tests and create the documentation below.
- * There are spring extensions for asciidoctor used to enrich the documentation.
+ * Spring extensions for asciidoctor are included, which enrich the documentation possibilities.
  *
  * References:
  * - Asciidoctor: https://asciidoctor.github.io/asciidoctor-gradle-plugin/development-3.x/user-guide/#_as_external_library
@@ -27,7 +32,7 @@ asciidoctor {
 }
 
 test {
-    // Maka jacoco report the test coverage afterwards
+    // Make jacoco report the test coverage afterwards
     finalizedBy jacocoTestReport
     // Spring RESTdocs extension for Asciidoctor config
     outputs.dir snippetsDir
@@ -46,7 +51,7 @@ test {
 
 tasks.withType(Test) {
     testLogging {
-        // always run tasks, they are never outdated
+        // always run/log tests, they are never "up-to-date"
         outputs.upToDateWhen {false}
         // show stdio and stderr of tests
         showStandardStreams = true
