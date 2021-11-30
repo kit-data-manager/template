@@ -1,7 +1,7 @@
 plugins {
     // Spring boot & dependency management:
     // https://docs.spring.io/spring-boot/docs/current/gradle-plugin/reference/htmlsingle/
-    id 'org.springframework.boot' version '2.2.2.RELEASE'
+    id 'org.springframework.boot' version '2.6.0'
     id "io.spring.dependency-management" version "1.0.11.RELEASE" 
     // Lombok generates getters and setters and more. https://projectlombok.org/setup/gradle
     // 5.3.3.3 is newest version compatible with Gradle 6 it seems.
