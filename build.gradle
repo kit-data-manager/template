@@ -19,6 +19,10 @@ description = "A template project."
 version = "0.0.1"
 group = 'edu.kit.datamanager'
 
+println "Running gradle version: $gradle.gradleVersion"
+println "JDK version: ${JavaVersion.current()}"
+println "Building ${name} version: ${version}"
+
 repositories {
     mavenLocal() 
     mavenCentral()
