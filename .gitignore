@@ -1,8 +1,6 @@
-### CUSTOM ###
-# Example: Files or directories outside of "/src" and named "build" are ignored.
-# To allow such a file explicitly, do use:
-# !/setup/build/env.sh
-##############
+###############################################################################
+### IGNORE (to add exceptions, scroll to the end of the file)
+###############################################################################
 
 ###  SPRING BOOT ###
 # Ignore local settings for spring boot
@@ -24,11 +22,8 @@
 ### GRADLE ###
 .gradle
 **/build/
-!src/**/build/
 # Ignore Gradle GUI config
 gradle-app.setting
-# Avoid ignoring Gradle wrapper jar file (.jar files might be ignored)
-!gradle-wrapper.jar
 # Cache of project
 .gradletasknamecache
 ##############
@@ -129,3 +124,27 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 ##################
+
+###############################################################################
+### ADD EXCEPTIONS (Files that should not be ignored.)
+###############################################################################
+# Example: Files or directories outside of "/src" and named "build" are ignored.
+# To allow such a file explicitly, do use:
+# !/setup/build/env.sh
+# 
+### Syntax documentation ###
+# > An optional prefix "!" which negates the pattern; any matching file excluded
+# > by a previous pattern will become included again. It is not possible to
+# > re-include a file if a parent directory of that file is excluded. Git doesn’t
+# > list excluded directories for performance reasons, so any patterns on
+# > contained files have no effect, no matter where they are defined. Put a
+# > backslash ("\") in front of the first "!" for patterns that begin with a
+# > literal "!", for example, "\!important!.txt".
+# From: https://git-scm.com/docs/gitignore
+############################
+
+### GRADLE ###
+!src/**/build/
+# Avoid ignoring Gradle wrapper jar file (.jar files might be ignored)
+!**/gradle-wrapper.jar
+##############
