@@ -14,10 +14,10 @@ plugins {
     id 'org.asciidoctor.jvm.convert' version '3.3.2'  // Documentation
 }
 
-jar {
-    archiveBaseName = 'template'
-    archiveVersion =  System.getenv('version')
-}
+archivesBaseName = 'template'
+description = "A template project."
+version = "0.0.1"
+group = 'edu.kit.datamanager'
 
 repositories {
     mavenLocal() 
